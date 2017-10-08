@@ -1,5 +1,6 @@
 /**
  * Insert new file.
+ * Using REST API v2
  *
  * @param {File} fileData File object to read data from.
  * @param {Function} callback Function to call when the request is complete.

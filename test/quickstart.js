@@ -114,14 +114,15 @@ function storeToken(token) {
  */
 function listFiles(auth) {
     var service = google.drive('v3');
+    /*
     var folderId = '0B66UiY7IOpr-b2c0M2VlUnpCaTA';
     var fileMetadata = {
         parents: [folderId]
-      };
+      };*/
     
      service.files.list({
         auth: auth,  
-        resource: fileMetadata,     
+      //  resource: fileMetadata,     
         pageSize: 999,
         fields: "nextPageToken, files(id, name)"
     }, function (err, response) {

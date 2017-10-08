@@ -1,0 +1,21 @@
+{
+  "name": "archive.ro",
+  "version": "1.0.0",
+  "description": "simple gdrive usecase",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "*",
+    "ejs": "^2.5.7",
+    "express": "*",
+    "google-auth-library": "^0.11.0",
+    "googleapis": "^22.2.0",
+    "nodemon": "^1.12.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabriel Chivoiu",
+  "license": "ISC"
+}
