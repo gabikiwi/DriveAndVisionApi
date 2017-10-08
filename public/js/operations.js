@@ -26,26 +26,26 @@ var listMyFiles = function listFiles() {
  */
 function appendPre(message) {
 
-    var pre = document.getElementById('content');
-    var textContent = document.createTextNode(message + '\n');
-    pre.appendChild(textContent);
-    
+  var pre = document.getElementById('content');
+  var textContent = document.createTextNode(message + '\n');
+  pre.appendChild(textContent);
+
 }
 
-function removePre() {  
-    document.getElementById('content').innerHTML = "";
+function removePre() {
+  document.getElementById('content').innerHTML = "";
 }
 
 
 
 // create a Folder
-var createAFolder = function createAFolder(){
- 
+var createAFolder = function createAFolder() {
+  var service = google.drive('v3');
   var fileMetadata = {
     'name': 'Invoices',
     'mimeType': 'application/vnd.google-apps.folder'
   };
-  drive.files.create({
+  service.files.create({
     resource: fileMetadata,
     fields: 'id'
   }, function (err, file) {
@@ -61,32 +61,39 @@ var createAFolder = function createAFolder(){
 
 
 // upload a File
+// resursa https://stackoverflow.com/questions/34905363/create-file-with-google-drive-api-v3-javascript
+// https://developers.google.com/drive/v3/web/mime-types
+// https://gist.github.com/mkaminsky11/8624150
 
-var uploadFile = function UploadFile(){
-  //var service = google.drive('v3');
-  
-      var folderId = '0B66UiY7IOpr-b2c0M2VlUnpCaTA';
-      var fileMetadata = {
-          'name': 'photoTest1.jpg',
-          parents: [folderId]
-        };
-      
-  
-      var media = {
-          mimeType: 'image/jpeg',
-          body: fs.createReadStream('./files/photo.jpg')
-      };
-      service.files.create({
-          auth: auth,
-          resource: fileMetadata,
-          media: media,
-          fields: 'id'
-      }, function (err, file) {
-          if (err) {
-              // Handle error
-              console.error(err);
-          } else {
-              console.log('File Id: ', file.id);
-          }
-      });
-};
+var uploadFile = function UploadFile() {
+  // var service = google.drive('v3');
+
+  var folderId = '0B66UiY7IOpr-b2c0M2VlUnpCaTA';
+  var fileMetadata = {
+    'name': 'Ana Iubita',
+    'mimeType': 'application/vnd.google-apps.folder',
+    // 'name': 'photoTest1.jpg',
+    parents: [folderId]
+  };
+
+
+  // var media = {
+  //    mimeType: 'image/jpeg',
+  //     body: fs.createReadStream('./files/photo.jpg')
+  // };
+  gapi.client.drive.files.create({
+    resource: fileMetadata
+    //  media: media,
+    // fields: 'id'
+  }).then(function (response) {
+    switch (response.status) {
+      case 200:
+        var file = response.result;
+        console.log('Created Folder Id: ', file.id);
+        break;
+      default:
+        console.log('Error creating the folder, ' + response);
+        break;
+    }
+  });
+}

@@ -70,7 +70,7 @@ function updateSigninStatus(isSignedIn) {
     retriveAllFiles.style.display = 'none';
     clearAllFiles.style.display   = 'none';
     uploadAFile.style.display     = 'none';
-    createAFolder.style.display   = 'none';
+    //createAFolder.style.display   = 'none';
     
   }
 }
