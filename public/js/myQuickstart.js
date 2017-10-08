@@ -10,7 +10,11 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/res
 var SCOPES = 'https://www.googleapis.com/auth/drive';
 
 var authorizeButton = document.getElementById('authorize-button');
-var signoutButton = document.getElementById('signout-button');
+var signoutButton   = document.getElementById('signout-button');
+var retriveAllFiles = document.getElementById('retrive-all-files');
+var clearAllFiles   = document.getElementById('clear-all-files');
+var uploadAFile     = document.getElementById('upload-a-file');
+var createAFolder   = document.getElementById('create-a-folder');
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -37,6 +41,11 @@ function initClient() {
     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
+    retriveAllFiles.onclick = handleRetriveAllFilesOnClick;
+    clearAllFiles.onclick = handleClearAllFilesOnClick;
+    uploadAFile.onclick   = handleUploadAFileOnClick;
+    createAFolder.onclick = handleCreateAFolderOnClick;
+
   });
 }
 
@@ -47,11 +56,22 @@ function initClient() {
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
-    signoutButton.style.display = 'block';
-    listFiles();
+    signoutButton.style.display   = 'block';
+    retriveAllFiles.style.display = 'block';
+    clearAllFiles.style.display   = 'block';
+   // createAFolder.style.display   = 'block';
+    uploadAFile.style.display     = 'block';
+    
+    
+    //listFiles();
   } else {
     authorizeButton.style.display = 'block';
-    signoutButton.style.display = 'none';
+    signoutButton.style.display   = 'none';
+    retriveAllFiles.style.display = 'none';
+    clearAllFiles.style.display   = 'none';
+    uploadAFile.style.display     = 'none';
+    createAFolder.style.display   = 'none';
+    
   }
 }
 
@@ -69,35 +89,18 @@ function handleSignoutClick(event) {
   gapi.auth2.getAuthInstance().signOut();
 }
 
-/**
- * Append a pre element to the body containing the given message
- * as its text node. Used to display the results of the API call.
- *
- * @param {string} message Text to be placed in pre element.
- */
-function appendPre(message) {
-  var pre = document.getElementById('content');
-  var textContent = document.createTextNode(message + '\n');
-  pre.appendChild(textContent);
+function handleClearAllFilesOnClick(event){
+  removePre();
 }
 
-/**
- * Print files.
- */
-function listFiles() {
-  gapi.client.drive.files.list({
-    'pageSize': 500,
-    'fields': "nextPageToken, files(id, name)"
-  }).then(function(response) {
-    appendPre('Files:');
-    var files = response.result.files;
-    if (files && files.length > 0) {
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        appendPre(file.name + ' (' + file.id + ')');
-      }
-    } else {
-      appendPre('No files found.');
-    }
-  });
+function handleRetriveAllFilesOnClick(event){
+  listMyFiles();
+}
+
+function handleUploadAFileOnClick(event){
+  uploadFile();
+}
+
+function handleCreateAFolderOnClick(event){
+  createAFolder();
 }

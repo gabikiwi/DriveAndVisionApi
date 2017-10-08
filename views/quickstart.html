@@ -1,24 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Drive API Quickstart</title>
-    <meta charset='utf-8' />
-  </head>
-  <body>
-    <p>Drive API Quickstart</p>
 
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize-button" style="display: none;">Authorize</button>
-    <button id="signout-button" style="display: none;">Sign Out</button>
-
-    <pre id="content"></pre>
+<head>
+  <title>Drive API Quickstart</title>
+  <meta charset='utf-8' />
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  <link rel="stylesheet" href="styles/index.css">
 
-    <script src="js/myQuickstart.js"></script>
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
-  </body>
+
+</head>
+
+<body>
+
+  <header>
+    <img src="img/gam-logo-1.png" alt="some_text">
+    <h1>Google Drive API</h1>
+  </header>
+<main>
+  <!--Add buttons to initiate auth sequence and sign out-->
+  <div><a><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  id="authorize-button" style="display: none;">Authorize</button></a></div>
+  <div style="float: right;"><a><button class="mdl-button mdl-js-button" id="signout-button" style="display: none;">Sign Out</button></a></div>   
+  <div><a><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="retrive-all-files" style="display: none;">Retrive All Files and Folders</button></a></div>
+  <div><a><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="upload-a-file" style="display: none;">UploadFile</button></a></div>
+  <div><a><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="create-a-folder" style="display: block;">createAFolder</button></a></div>
+  <div><a><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="clear-all-files" style="display: none;">Clear All</button></a></div>
+  
+
+  <pre id="content"></pre>
+
+</main>
+
+
+  <script src="js/myQuickstart.js"></script>
+  <script src="js/operations.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js" 
+  onload="this.onload=function(){};handleClientLoad()" 
+  onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
+  <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+</body>
+
 </html>

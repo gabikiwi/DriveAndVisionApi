@@ -22,6 +22,7 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
     
 });
 
+/*
 fs.readFile('client_secret.json', function processClientSecrets(err, content) {
     if (err) {
         console.log('Error loading client secret file: ' + err);
@@ -29,9 +30,9 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
     }
     // Authorize a client with the loaded credentials, then call the
     // Drive API.
-    authorize(JSON.parse(content), uploadFiles);
+    authorize(JSON.parse(content), createAFolder);
     
-});
+});*/
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -123,8 +124,9 @@ function listFiles(auth) {
      service.files.list({
         auth: auth,  
       //  resource: fileMetadata,     
-        pageSize: 999,
-        fields: "nextPageToken, files(id, name)"
+        pageSize: 300,
+        fields: "nextPageToken, files(id, name)",
+        "mimeType": "application/vnd.google-apps.folder"        
     }, function (err, response) {
         if (err) {
             console.log('The API returned an error: ' + err);
@@ -149,14 +151,14 @@ function uploadFiles(auth) {
 
     var folderId = '0B66UiY7IOpr-b2c0M2VlUnpCaTA';
     var fileMetadata = {
-        'name': 'photo.jpg',
+        'name': 'photoTest.jpg',
         parents: [folderId]
       };
     
 
     var media = {
         mimeType: 'image/jpeg',
-        body: fs.createReadStream('files/photo.jpg')
+        body: fs.createReadStream('../files/photo.jpg')
     };
     service.files.create({
         auth: auth,
@@ -172,3 +174,23 @@ function uploadFiles(auth) {
         }
     });
 }
+
+function createAFolder(auth){
+    var service = google.drive('v3');
+     var fileMetadata = {
+       'name': 'Invoices',
+       'mimeType': 'application/vnd.google-apps.folder'
+     };
+     service.files.create({
+       resource: fileMetadata,
+       fields: 'id'
+     }, function (err, file) {
+       if (err) {
+         // Handle error
+         console.error(err);
+       } else {
+         console.log('Folder Id: ', file.id);
+       }
+     });
+   
+   };
