@@ -41,6 +41,7 @@ function removePre() {
 // create a Folder
 var createAFolder = function createAFolder(){
  
+  let drive = google.drive('v3');
   var fileMetadata = {
     'name': 'Invoices',
     'mimeType': 'application/vnd.google-apps.folder'
@@ -62,9 +63,9 @@ var createAFolder = function createAFolder(){
 
 // upload a File
 
-var uploadFile = function UploadFile(){
-  //var service = google.drive('v3');
+var uploadFileNew = function UploadFileNew(){
   
+      let service = google.drive('v3');
       var folderId = '0B66UiY7IOpr-b2c0M2VlUnpCaTA';
       var fileMetadata = {
           'name': 'photoTest1.jpg',
@@ -74,7 +75,7 @@ var uploadFile = function UploadFile(){
   
       var media = {
           mimeType: 'image/jpeg',
-          body: fs.createReadStream('./files/photo.jpg')
+          body: fs.createReadStream('./img/photo.jpg')
       };
       service.files.create({
           auth: auth,
