@@ -60,11 +60,9 @@ app.get('/quickstart.html', function (req, res) {
 })
 
 
-app.post('/', function(req, resp){
 
-    resp.end(JSON.stringify(req.body));
-
-})
+// Configure routes
+app.use('/', require('./lib/routes'));
 
 
 
@@ -72,3 +70,5 @@ app.listen(8080, function () {
     console.log("Server started on Port 8080 ... ");
 
 });
+
+module.exports = app;
