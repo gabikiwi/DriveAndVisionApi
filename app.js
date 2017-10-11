@@ -28,7 +28,7 @@ app.engine('html', require('ejs').renderFile);
 // our static folder definition
 app.use(express.static(path.join(__dirname, 'public')));
 
-// node is asynchron and doesn't wait for a function to finish 
+// node is asynchron and doesn't wait for a function to finish 3
 
 app.get ('/image', (req, res) => {
     let readStream = fs.createReadStream(__dirname + '/public/img/photo.jpg')
