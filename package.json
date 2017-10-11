@@ -9,7 +9,9 @@
     "express": "*",
     "google-auth-library": "^0.11.0",
     "googleapis": "^22.2.0",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "lodash": "^4.3.0",
+    "unirest": "^0.4.2"
   },
   "devDependencies": {},
   "scripts": {

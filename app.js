@@ -28,7 +28,21 @@ app.engine('html', require('ejs').renderFile);
 // our static folder definition
 app.use(express.static(path.join(__dirname, 'public')));
 
-// node is asynchron and doesn't wait for a function to finish 
+// node is asynchron and doesn't wait for a function to finish 3
+
+app.get ('/image', (req, res) => {
+    let readStream = fs.createReadStream(__dirname + '/public/img/photo.jpg')
+
+    // When the stream is done being read, end the response
+    readStream.on('close', () => {
+        res.end()
+    })
+
+    // Stream chunks to response
+    readStream.pipe(res);
+    console.log(res);
+});
+
 app.get('/', function (req, res) {
 
     res.render('index.html');
@@ -47,7 +61,14 @@ app.get('/quickstart.html', function (req, res) {
 
 
 
+// Configure routes
+app.use('/', require('./lib/routes'));
+
+
+
 app.listen(8080, function () {
     console.log("Server started on Port 8080 ... ");
 
 });
+
+module.exports = app;

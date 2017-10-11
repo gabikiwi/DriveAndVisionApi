@@ -39,8 +39,14 @@ function removePre() {
 
 
 // create a Folder
+<<<<<<< HEAD
 var createAFolder = function createAFolder() {
   var service = google.drive('v3');
+=======
+var createAFolder = function createAFolder(){
+ 
+  let drive = google.drive('v3');
+>>>>>>> my_working_project
   var fileMetadata = {
     'name': 'Invoices',
     'mimeType': 'application/vnd.google-apps.folder'
@@ -76,6 +82,7 @@ var uploadFile = function UploadFile() {
     parents: [folderId]
   };
 
+<<<<<<< HEAD
 
   // var media = {
   //    mimeType: 'image/jpeg',
@@ -97,3 +104,33 @@ var uploadFile = function UploadFile() {
     }
   });
 }
+=======
+var uploadFileNew = function UploadFileNew(){
+  
+      let service = google.drive('v3');
+      var folderId = '0B66UiY7IOpr-b2c0M2VlUnpCaTA';
+      var fileMetadata = {
+          'name': 'photoTest1.jpg',
+          parents: [folderId]
+        };
+      
+  
+      var media = {
+          mimeType: 'image/jpeg',
+          body: fs.createReadStream('./img/photo.jpg')
+      };
+      service.files.create({
+          auth: auth,
+          resource: fileMetadata,
+          media: media,
+          fields: 'id'
+      }, function (err, file) {
+          if (err) {
+              // Handle error
+              console.error(err);
+          } else {
+              console.log('File Id: ', file.id);
+          }
+      });
+};
+>>>>>>> my_working_project

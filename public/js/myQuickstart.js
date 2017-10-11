@@ -14,7 +14,8 @@ var signoutButton   = document.getElementById('signout-button');
 var retriveAllFiles = document.getElementById('retrive-all-files');
 var clearAllFiles   = document.getElementById('clear-all-files');
 var uploadAFile     = document.getElementById('upload-a-file');
-var createAFolder   = document.getElementById('create-a-folder');
+var createMyFolder  = document.getElementById('createfolder');
+var myForm          = document.getElementById('myFolderForm');
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -44,8 +45,8 @@ function initClient() {
     retriveAllFiles.onclick = handleRetriveAllFilesOnClick;
     clearAllFiles.onclick = handleClearAllFilesOnClick;
     uploadAFile.onclick   = handleUploadAFileOnClick;
-    createAFolder.onclick = handleCreateAFolderOnClick;
-
+    createMyFolder.onclick = handleCreateAFolderOnClick;
+    // my myForm is handled via POST
   });
 }
 
@@ -59,19 +60,24 @@ function updateSigninStatus(isSignedIn) {
     signoutButton.style.display   = 'block';
     retriveAllFiles.style.display = 'block';
     clearAllFiles.style.display   = 'block';
-   // createAFolder.style.display   = 'block';
     uploadAFile.style.display     = 'block';
-    
-    
-    //listFiles();
+    createMyFolder.style.display  = 'block';
+    myForm.style.display          = 'block';
+
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display   = 'none';
     retriveAllFiles.style.display = 'none';
     clearAllFiles.style.display   = 'none';
     uploadAFile.style.display     = 'none';
+<<<<<<< HEAD
     //createAFolder.style.display   = 'none';
     
+=======
+    createMyFolder.style.display  = 'none';
+    myForm.style.display          = 'none';
+   
+>>>>>>> my_working_project
   }
 }
 
@@ -94,13 +100,17 @@ function handleClearAllFilesOnClick(event){
 }
 
 function handleRetriveAllFilesOnClick(event){
-  listMyFiles();
+  console.log('Inside list all file method');
+ listMyFiles();
 }
 
 function handleUploadAFileOnClick(event){
-  uploadFile();
+  console.log('Inside upload a file method');
+  //uploadFile();
+  uploadFileNew();
 }
 
 function handleCreateAFolderOnClick(event){
-  createAFolder();
+  console.log('Inside Create a Folder method');
+  //CreateAFolder();
 }
