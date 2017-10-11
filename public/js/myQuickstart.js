@@ -17,6 +17,7 @@ var uploadAFile     = document.getElementById('upload-a-file');
 var createMyFolder  = document.getElementById('createfolder');
 var myForm          = document.getElementById('myFolderForm');
 
+
 /**
  *  On load, called to load the auth2 library and API client library.
  */
