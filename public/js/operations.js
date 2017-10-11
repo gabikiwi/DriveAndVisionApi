@@ -39,14 +39,8 @@ function removePre() {
 
 
 // create a Folder
-<<<<<<< HEAD
 var createAFolder = function createAFolder() {
   var service = google.drive('v3');
-=======
-var createAFolder = function createAFolder(){
- 
-  let drive = google.drive('v3');
->>>>>>> my_working_project
   var fileMetadata = {
     'name': 'Invoices',
     'mimeType': 'application/vnd.google-apps.folder'
