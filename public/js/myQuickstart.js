@@ -70,14 +70,11 @@ function updateSigninStatus(isSignedIn) {
     retriveAllFiles.style.display = 'none';
     clearAllFiles.style.display   = 'none';
     uploadAFile.style.display     = 'none';
-<<<<<<< HEAD
     //createAFolder.style.display   = 'none';
     
-=======
     createMyFolder.style.display  = 'none';
     myForm.style.display          = 'none';
    
->>>>>>> my_working_project
   }
 }
 
