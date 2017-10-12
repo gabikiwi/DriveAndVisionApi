@@ -64,7 +64,7 @@ app.get('/quickstart.html', function (req, res) {
 // Configure routes
 app.use('/', require('./lib/routes'));
 
-
+//app.use('/vision',require('./test_annotate_remote'));
 
 app.listen(8080, function () {
     console.log("Server started on Port 8080 ... ");
